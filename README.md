@@ -10,4 +10,5 @@ The **backend** is built with:
 The **frontend** is implemented using:
 - **HTML, CSS**
 - **JavaScript** 
+
 This project aims to streamline customer service operations by efficiently managing customer queues in a banking environment.
