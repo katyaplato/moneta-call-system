@@ -1,4 +1,4 @@
-package com.example.moneta_call_system;
+package com.example.moneta_call_system.repositories;
 
 import com.example.moneta_call_system.models.Ticket;
 import org.springframework.data.jpa.repository.JpaRepository;
