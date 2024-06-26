@@ -6,4 +6,5 @@ public interface TicketService {
     Ticket createTicket();
     void deleteLast();
     Ticket getActiveTicket();
+    void deleteActive();
 }

@@ -16,6 +16,7 @@ public class TicketServiceImpl implements TicketService {
 
     private final TicketRepository ticketRepository;
     private final TicketLogRepository ticketLogRepository;
+
     @Override
     public Ticket createTicket() {
 
@@ -44,6 +45,15 @@ public class TicketServiceImpl implements TicketService {
     public Ticket getActiveTicket() {
         Ticket actualTicket = ticketRepository.findByActualPosition(0);
         return actualTicket;
+    }
+
+    @Override
+    public void deleteActive() {
+        Ticket actualTicket = ticketRepository.findByActualPosition(0);
+        if (actualTicket == null) {
+            throw new IllegalStateException("The queue is empty.");
+        }
+        ticketRepository.delete(actualTicket);
     }
 
     private int getQueueNumber() {

@@ -25,6 +25,6 @@ public class CallSystemControllerImpl implements CallSystemController {
 
     @Override
     public ResponseEntity<?> getActualTicket() {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK).body(ticketService.getActiveTicket());
     }
 }
