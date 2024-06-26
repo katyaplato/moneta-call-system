@@ -35,7 +35,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public void deleteLast() {
-
+        List<Ticket> tickets = ticketRepository.findAll();
+        Ticket theLastTicket = tickets.get(tickets.size() - 1);
+        ticketRepository.delete(theLastTicket);
     }
 
     @Override
