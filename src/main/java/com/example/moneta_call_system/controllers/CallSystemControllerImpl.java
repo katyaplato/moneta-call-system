@@ -19,7 +19,8 @@ public class CallSystemControllerImpl implements CallSystemController {
 
     @Override
     public ResponseEntity<?> deleteLastTicket() {
-        return null;
+        ticketService.deleteLast();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @Override
