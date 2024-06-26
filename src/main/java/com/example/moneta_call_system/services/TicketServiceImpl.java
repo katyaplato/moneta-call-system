@@ -54,8 +54,17 @@ public class TicketServiceImpl implements TicketService {
             throw new IllegalStateException("The queue is empty.");
         }
         ticketRepository.delete(actualTicket);
+        List<Ticket> tickets = ticketRepository.findAll();
+        updateActualPosition(tickets);
     }
 
+    private void updateActualPosition(List<Ticket> tickets) {
+        for (int i = 0; i < tickets.size(); i++) {
+            Ticket newActualTicket = tickets.get(i);
+            newActualTicket.setActualPosition(i);
+            ticketRepository.save(newActualTicket);
+        }
+    }
     private int getQueueNumber() {
         List<TicketLog> allTickets = ticketLogRepository.findAll();
         if (allTickets.isEmpty()) {
