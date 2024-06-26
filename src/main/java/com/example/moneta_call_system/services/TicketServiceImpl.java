@@ -42,7 +42,8 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket getActiveTicket() {
-        return null;
+        Ticket actualTicket = ticketRepository.findByActualPosition(0);
+        return actualTicket;
     }
 
     private int getQueueNumber() {
