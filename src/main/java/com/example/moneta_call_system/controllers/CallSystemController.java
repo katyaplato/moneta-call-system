@@ -11,4 +11,6 @@ public interface CallSystemController {
     ResponseEntity<?> deleteLastTicket();
     @GetMapping("/get-actual")
     ResponseEntity<?> getActualTicket();
+    @DeleteMapping("/finish-actual")
+    ResponseEntity<?> finishActualTicket();
 }
