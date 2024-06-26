@@ -37,6 +37,9 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public void deleteLast() {
         List<Ticket> tickets = ticketRepository.findAll();
+        if (tickets.isEmpty()) {
+            throw new IllegalStateException("The queue is empty.");
+        }
         Ticket theLastTicket = tickets.get(tickets.size() - 1);
         ticketRepository.delete(theLastTicket);
     }
@@ -44,6 +47,9 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public Ticket getActiveTicket() {
         Ticket actualTicket = ticketRepository.findByActualPosition(0);
+        if (actualTicket == null) {
+            throw new IllegalStateException("The queue is empty.");
+        }
         return actualTicket;
     }
 

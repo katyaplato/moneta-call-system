@@ -1,5 +1,6 @@
 package com.example.moneta_call_system.controllers;
 
+import com.example.moneta_call_system.models.Ticket;
 import com.example.moneta_call_system.services.TicketService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,18 +20,31 @@ public class CallSystemControllerImpl implements CallSystemController {
 
     @Override
     public ResponseEntity<?> deleteLastTicket() {
-        ticketService.deleteLast();
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        try {
+            ticketService.deleteLast();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @Override
     public ResponseEntity<?> getActualTicket() {
-        return ResponseEntity.status(HttpStatus.OK).body(ticketService.getActiveTicket());
+        try {
+            Ticket activeTicket = ticketService.getActiveTicket();
+            return ResponseEntity.status(HttpStatus.OK).body(activeTicket);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @Override
     public ResponseEntity<?> finishActualTicket() {
-        ticketService.deleteActive();
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        try {
+            ticketService.deleteActive();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 }
