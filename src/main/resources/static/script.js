@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 statusMessage.textContent = `New ticket created with queue number ${data.queueNumber}.`;
+                setTimeout(() => {
+                    statusMessage.textContent = ""}, 5000)
             });
     });
+
+
 })
