@@ -15,23 +15,23 @@ This project aims to streamline customer service operations by efficiently manag
 
 *Start page*
 
-![img.png](img.png)
+![img.png](src/main/resources/static/imgs/img.png)
 
 *Click* ***Generate a new ticket***
 
-![img_1.png](img_1.png)
+![img_1.png](src/main/resources/static/imgs/img_1.png)
 
 *Click* ***Next***
 
-![img_2.png](img_2.png)
+![img_2.png](src/main/resources/static/imgs/img_2.png)
 
 *Click* ***Finish***
 
-![img_3.png](img_3.png)
+![img_3.png](src/main/resources/static/imgs/img_3.png)
 
 *Click* ***Delete*** *when no tickets*
 
-![img_4.png](img_4.png)
+![img_5.png](src/main/resources/static/imgs/img_5.png)
 
 
 
