@@ -12,3 +12,5 @@ The **frontend** is implemented using:
 - **JavaScript** 
 
 This project aims to streamline customer service operations by efficiently managing customer queues in a banking environment.
+
+![img.png](img.png)
