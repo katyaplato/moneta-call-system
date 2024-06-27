@@ -14,8 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 statusMessage.textContent = `New ticket created with queue number ${data.queueNumber}.`;
                 setTimeout(() => {
-                    statusMessage.textContent = ""
-                }, 5000)
+                    statusMessage.textContent = "";
+                }, 5000);
+            })
+            .catch(error => {
+                console.error(error);
+                statusMessage.textContent = "Failed to create a new ticket.";
+                setTimeout(() => {
+                    statusMessage.textContent = "";
+                }, 5000);
             });
     });
 
@@ -25,14 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    statusMessage.textContent = "The queue is empty.";
-                    setTimeout(() => {
-                        statusMessage.textContent = "";
-                    }, 5000);
-                    nextButton.style.display = "block";
-                    deleteButton.style.display = "block";
-                    generateButton.style.display = "block"
-                    finishButton.style.display = "none";
+                    throw new Error("The queue is empty.");
                 }
             })
             .then(data => {
@@ -50,25 +50,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 finishButton.style.display = "block";
             })
+            .catch(error => {
+                console.error(error);
+                statusMessage.textContent = error.message;
+                setTimeout(() => {
+                    statusMessage.textContent = "";
+                }, 5000);
+            });
     });
 
     finishButton.addEventListener("click", function () {
         fetch("/api/finish-actual", {method: "DELETE"})
             .then(response => {
-                statusMessage.textContent = "Current ticket finished.";
+                if (response.status === 204) {
+                    handleSuccessfulFinish();
+                } else {
+                    throw new Error("Failed to finish the current ticket.");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                statusMessage.textContent = error.message;
                 setTimeout(() => {
                     statusMessage.textContent = "";
                 }, 5000);
-
-                const ticketNumberElement = document.getElementById("ticket-number");
-                if (ticketNumberElement) {
-                    ticketNumberElement.remove();
-                }
-                nextButton.style.display = "block";
-                deleteButton.style.display = "block";
-                generateButton.style.display = "block"
-                finishButton.style.display = "none";
-            })
+            });
     });
 
     deleteButton.addEventListener("click", function () {
@@ -79,6 +85,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     statusMessage.textContent = "The queue is empty.";
                 }
+                setTimeout(() => {
+                    statusMessage.textContent = "";
+                }, 5000);
+            })
+            .catch(error => {
+                console.error(error);
+                statusMessage.textContent = "Failed to delete the last ticket.";
+                setTimeout(() => {
+                    statusMessage.textContent = "";
+                }, 5000);
             });
     });
+
+    function handleSuccessfulFinish() {
+        statusMessage.textContent = "Current ticket finished.";
+        setTimeout(() => {
+            statusMessage.textContent = "";
+        }, 5000);
+
+        const ticketNumberElement = document.getElementById("ticket-number");
+        if (ticketNumberElement) {
+            ticketNumberElement.remove();
+        }
+        nextButton.style.display = "block";
+        deleteButton.style.display = "block";
+        generateButton.style.display = "block";
+        finishButton.style.display = "none";
+    }
 })
