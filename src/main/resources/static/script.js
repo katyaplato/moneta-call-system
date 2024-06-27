@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    throw new Error("The queue is empty.");
+                    statusMessage.textContent = "The queue is empty.";
+                    setTimeout(() => {
+                        statusMessage.textContent = "";
+                    }, 5000);
                 }
             })
             .then(data => {
@@ -43,12 +46,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 finishButton.style.display = "block";
             })
-            .catch(error => {
-                statusMessage.textContent = error.textContent = "The queue is empty.";
-                setTimeout(() => {
-                    statusMessage.textContent = error.textContent = "";
-                }, 5000);
-            });
     });
 
+    finishButton.addEventListener("click", function () {
+        fetch("/api/finish-actual", {method: "DELETE"})
+            .then(response => {
+                statusMessage.textContent = "Current ticket finished.";
+                setTimeout(() => {
+                    statusMessage.textContent = "";
+                }, 5000);
+
+                const ticketNumberElement = document.getElementById("ticket-number");
+                if (ticketNumberElement) {
+                    ticketNumberElement.remove();
+                }
+                nextButton.style.display = "block";
+                deleteButton.style.display = "block";
+                generateButton.style.display = "block"
+
+                finishButton.style.display = "none";
+            })
+    });
 })
