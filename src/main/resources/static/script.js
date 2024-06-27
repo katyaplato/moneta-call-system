@@ -29,6 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     setTimeout(() => {
                         statusMessage.textContent = "";
                     }, 5000);
+                    nextButton.style.display = "block";
+                    deleteButton.style.display = "block";
+                    generateButton.style.display = "block"
+                    finishButton.style.display = "none";
                 }
             })
             .then(data => {
@@ -63,8 +67,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 nextButton.style.display = "block";
                 deleteButton.style.display = "block";
                 generateButton.style.display = "block"
-
                 finishButton.style.display = "none";
             })
+    });
+
+    deleteButton.addEventListener("click", function () {
+        fetch("/api/delete-last", {method: "DELETE"})
+            .then(response => {
+                if (response.status === 204) {
+                    statusMessage.textContent = "The last ticket was deleted.";
+                } else {
+                    statusMessage.textContent = "The queue is empty.";
+                }
+            });
     });
 })
