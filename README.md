@@ -13,23 +13,23 @@ The **frontend** is implemented using:
 
 This project aims to streamline customer service operations by efficiently managing customer queues in a banking environment.
 
-*Start page*
+- *Start page*
 
 ![img.png](src/main/resources/static/imgs/img.png)
 
-*Click* ***Generate a new ticket***
+- *Click* ***Generate a new ticket***
 
 ![img_1.png](src/main/resources/static/imgs/img_1.png)
 
-*Click* ***Next***
+- *Click* ***Next***
 
 ![img_2.png](src/main/resources/static/imgs/img_2.png)
 
-*Click* ***Finish***
+- *Click* ***Finish***
 
 ![img_3.png](src/main/resources/static/imgs/img_3.png)
 
-*Click* ***Delete*** *when no tickets*
+- *Click* ***Delete*** *when no tickets*
 
 ![img_5.png](src/main/resources/static/imgs/img_5.png)
 
