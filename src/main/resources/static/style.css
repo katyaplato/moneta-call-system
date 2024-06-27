@@ -1,0 +1,76 @@
+body {
+    background: linear-gradient(to bottom left, rgba(237, 28, 36, 1), rgba(20, 7, 87, 1));
+    margin: 0;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: left;
+    display: flex;
+    justify-content: left;
+    align-items: start;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: extra-expanded;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header h5 {
+    margin: 5px 0 0 15px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.buttons input {
+    font-size: 1em;
+    background: linear-gradient(to bottom left, rgba(25, 9, 82, 1), rgba(94, 25, 70, 1));
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    width: 200px;
+    height: 50px;
+    margin: 20px
+}
+
+.buttons input:hover {
+    opacity: 0.8;
+}
+
+#ticket-number {
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.status {
+    color: white;
+    margin: 20px;
+    text-align: center;
+    width: 100%;
+}
+
